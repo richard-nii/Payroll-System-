@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/add_employee.css') }}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add New Employee</h2>
+    <form method="POST">
+      <label>Employee ID</label>
+      <input type="text" name="employee_id" required>
+
+      <label>First Name</label>
+      <input type="text" name="first_name" required>
+
+      <label>Surname</label>
+      <input type="text" name="surname" required>
+
+      <label>Date of Birth</label>
+      <input type="date" name="date_of_birth" required>
+
+      <label>Grade</label>
+      <select name="grade_id" required>
+        {% for grade in grades %}
+          <option value="{{ grade.grade_id }}">Grade {{ grade.grade_id }} - Salary: {{ grade.salary }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Department</label>
+      <select name="department_id" required>
+        {% for dept in departments %}
+          <option value="{{ dept.department_id }}">{{ dept.department_name }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Job</label>
+      <select name="job_id" required>
+        {% for job in jobs %}
+          <option value="{{ job.job_id }}">{{ job.job_name }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Element (Allowances & Deductions)</label>
+      <select name="element_id" required>
+        {% for elem in elements %}
+          <option value="{{ elem.element_id }}">Element ID {{ elem.element_id }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Bank Name</label>
+      <input type="text" name="bank_name" required>
+
+      <label>Bank Account Number</label>
+      <input type="text" name="bank_account_number" required>
+
+      <button type="submit">Add Employee</button>
+    </form>
+  </div>
+</body>
+</html>

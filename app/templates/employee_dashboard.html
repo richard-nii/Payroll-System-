@@ -1,0 +1,38 @@
+<!-- templates/employee_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/employee.css') }}">
+
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Employee Dashboard</h2>
+    <p>Welcome, {{ employee.first_name }} {{ employee.surname }}</p>
+
+    <form id="edit-form" method="POST" action="{{ url_for('payroll.update_employee') }}">
+      <label>First Name:</label>
+      <input type="text" name="first_name" value="{{ employee.first_name }}" disabled>
+
+      <label>Surname:</label>
+      <input type="text" name="surname" value="{{ employee.surname }}" disabled>
+
+      <label>Bank Name:</label>
+      <input type="text" name="bank_name" value="{{ employee.bank_name }}" disabled>
+
+      <label>Account #:</label>
+      <input type="text" name="bank_account_number" value="{{ employee.bank_account_number }}" disabled>
+
+      <div class="buttons">
+        <button type="button" id="editBtn">Edit</button>
+        <button type="submit" id="saveBtn" style="display: none;">Save Changes</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='Javascript/employee.js') }}"></script>
+
+</body>
+</html>

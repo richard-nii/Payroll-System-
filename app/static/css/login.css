@@ -1,0 +1,80 @@
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card h2 {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.btn-login {
+    background-color: #667eea;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #5a67d8;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.alert {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+}

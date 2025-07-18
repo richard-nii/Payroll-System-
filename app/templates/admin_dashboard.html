@@ -1,0 +1,42 @@
+<!-- templates/admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, Admin <strong>{{ current_user.username }}</strong></p>
+
+    <!-- Add Employee Button -->
+    <div class="actions">
+      <a href="{{ url_for('payroll.add_employee') }}" class="add-employee-btn">+ Add New Employee</a>
+    </div>
+
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for emp in employees %}
+          <tr>
+            <td>{{ emp.first_name }} {{ emp.surname }}</td>
+            <td>{{ emp.department.department_name }}</td>
+            <td><a href="#" class="view-link" data-empid="{{ emp.employee_id }}">View Payslip</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <script src="{{ url_for('static', filename='Javascript/admin.js') }}"></script>
+</body>
+</html>
