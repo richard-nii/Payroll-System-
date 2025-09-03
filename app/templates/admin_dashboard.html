@@ -1,4 +1,4 @@
-<!-- templates/admin_dashboard.html -->
+<!--admin_dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +10,25 @@
 
   <div class="dashboard-container">
     <h2>Admin Dashboard</h2>
+    <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
     <p>Welcome, Admin <strong>{{ current_user.username }}</strong></p>
 
-    <!-- Add Employee Button -->
+    <!-- Buttons and links -->
     <div class="actions">
-      <a href="{{ url_for('payroll.add_employee') }}" class="add-employee-btn">+ Add New Employee</a>
+      <a href="{{ url_for('payroll.add_employee') }}" class="add-employee-btn"> Add New Employee</a>
+      <a href="{{ url_for('payroll.generate_payroll') }}" class="generate-payroll-btn">Generate Payroll</a>
+      <a href="{{ url_for('payroll.view_payroll_records') }}">View Payroll</a>
+
+
     </div>
+
+
+    <a href="{{ url_for('payroll.manage_departments') }}">Manage Departments</a><br>
+    <a href="{{ url_for('payroll.manage_grades') }}">Manage Grades</a><br>
+    <a href="{{ url_for('payroll.manage_jobs') }}">Manage Jobs</a><br>
+    <a href="{{ url_for('payroll.manage_elements') }}">Manage Elements</a><br>
+
+
 
     <table class="employee-table">
       <thead>

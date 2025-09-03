@@ -24,7 +24,7 @@
       <label>Grade</label>
       <select name="grade_id" required>
         {% for grade in grades %}
-          <option value="{{ grade.grade_id }}">Grade {{ grade.grade_id }} - Salary: {{ grade.salary }}</option>
+          <option value="{{ grade.grade_id }}">{{ grade.grade_name }} – GH₵{{ grade.salary }}</option>
         {% endfor %}
       </select>
 

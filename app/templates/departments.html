@@ -1,0 +1,30 @@
+<!-- templates/admin/departments.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Departments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/departments.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Departments</h1>
+
+        <form action="{{ url_for('payroll.manage_departments') }}" method="POST" class="department-form">
+            <input type="text" name="name" placeholder="Department Name" required>
+            <button type="submit">Add Department</button>
+        </form>
+
+        <ul class="department-list">
+    {% for department in departments %}
+        <li>
+            {{ department.department_name }}
+            <form action="{{ url_for('payroll.delete_department', id=department.department_id) }}" method="POST" style="display:inline;">
+                <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

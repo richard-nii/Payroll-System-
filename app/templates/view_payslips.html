@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Payslips</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/payslips.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>My Payslips</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th>Gross Salary</th>
+                    <th>Deductions</th>
+                    <th>Net Pay</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for slip in payslips %}
+                <tr>
+                    <td>{{ slip.month }}</td>
+                    <td>{{ slip.year }}</td>
+                    <td>{{ slip.gross_salary }}</td>
+                    <td>{{ slip.total_deductions }}</td>
+                    <td>{{ slip.net_pay }}</td>
+                    <td>
+                        <a href="{{ url_for('payroll.download_payslip', payroll_id=slip.payroll_id) }}" class="btn">Download PDF</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

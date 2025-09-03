@@ -1,6 +1,6 @@
 from . import db
 from flask_login import UserMixin
-
+from sqlalchemy.ext.hybrid import hybrid_property
 
 # ------------------------------
 # 1. User Table
@@ -40,9 +40,10 @@ class Grade(db.Model):
 
     grade_id = db.Column(db.Integer, primary_key=True)
     salary = db.Column(db.Numeric(10, 2))
+    grade_name = db.Column(db.String(50), nullable=False, unique=True)
     
     employees = db.relationship('Employee', backref='grade', lazy=True)
-    payrolls = db.relationship('Payroll', backref='grade', lazy=True)
+    payrolls = db.relationship('Payroll', back_populates='grade', lazy=True)
 
 
 # ------------------------------
@@ -89,7 +90,7 @@ class Element(db.Model):
     other_deductions = db.Column(db.Numeric(10, 2))
     
     employees = db.relationship('Employee', backref='element', lazy=True)
-    payrolls = db.relationship('Payroll', backref='element', lazy=True)
+    payrolls = db.relationship('Payroll', back_populates='element', lazy=True)
 
 
 # ------------------------------
@@ -102,6 +103,17 @@ class Payroll(db.Model):
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.employee_id'), nullable=False)
     grade_id = db.Column(db.Integer, db.ForeignKey('grade.grade_id'), nullable=False)
     element_id = db.Column(db.Integer, db.ForeignKey('element.element_id'), nullable=False)
+    month = db.Column(db.String(20), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    @hybrid_property
+    def period(self):
+        return f"{self.month} {self.year}"
 
-    employee = db.relationship('Employee', backref='payroll')
 
+    gross_salary = db.Column(db.Float, nullable=False)
+    total_deductions = db.Column(db.Float, nullable=False)
+    net_pay = db.Column(db.Float, nullable=False)
+
+    employee = db.relationship('Employee', backref='payrolls')
+    grade = db.relationship('Grade', back_populates='payrolls')
+    element = db.relationship('Element', back_populates='payrolls')

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payroll Records</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/view_payroll.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Payroll Records</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Month</th>
+          <th>Year</th>
+          <th>Basic (GH₵)</th>
+          <th>Allowances (GH₵)</th>
+          <th>Deductions (GH₵)</th>
+          <th>Gross Salary (GH₵)</th>
+          <th>Net Pay (GH₵)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in records %}
+          <tr>
+            <td>{{ p.employee.employee_id }}</td>
+            <td>{{ p.employee.first_name }} {{ p.employee.surname }}</td>
+            <td>{{ p.month }}</td>
+            <td>{{ p.year }}</td>
+            <td>GH₵ {{ p.grade.salary }}</td>
+            <td>
+              GH₵ {{
+                p.element.transport_allowance +
+                p.element.utility_allowance +
+                p.element.extra_duty_allowance +
+                p.element.other_allowance +
+                p.element.overtime
+              }}
+            </td>
+            <td>
+              GH₵ {{
+                p.element.social_security_deduction +
+                p.element.tax_deduction +
+                p.element.loan1_deduction +
+                p.element.loan2_deduction +
+                p.element.other_deductions
+              }}
+            </td>
+            <td>GH₵ {{ p.gross_salary }}</td>
+            <td><strong>GH₵ {{ p.net_pay }}</strong></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

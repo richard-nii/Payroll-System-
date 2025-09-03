@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Elements</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_elements.css') }}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add New Element (Allowances & Deductions)</h2>
+
+    <form method="POST">
+      <label>Transport Allowance</label>
+      <input type="number" step="0.01" name="transport_allowance" required>
+
+      <label>Utility Allowance</label>
+      <input type="number" step="0.01" name="utility_allowance" required>
+
+      <label>Extra Duty Allowance</label>
+      <input type="number" step="0.01" name="extra_duty_allowance" required>
+
+      <label>Other Allowance</label>
+      <input type="number" step="0.01" name="other_allowance" required>
+
+      <label>Overtime</label>
+      <input type="number" step="0.01" name="overtime" required>
+
+      <label>Social Security Deduction</label>
+      <input type="number" step="0.01" name="social_security_deduction" required>
+
+      <label>Tax Deduction</label>
+      <input type="number" step="0.01" name="tax_deduction" required>
+
+      <label>Loan 1 Deduction</label>
+      <input type="number" step="0.01" name="loan1_deduction" required>
+
+      <label>Loan 2 Deduction</label>
+      <input type="number" step="0.01" name="loan2_deduction" required>
+
+      <label>Other Deductions</label>
+      <input type="number" step="0.01" name="other_deductions" required>
+
+      <button type="submit">Save Element</button>
+    </form>
+
+    <h3>Existing Elements</h3>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Transport</th>
+          <th>Utility</th>
+          <th>Extra Duty</th>
+          <th>Other Allow</th>
+          <th>Overtime</th>
+          <th>SSD</th>
+          <th>Tax</th>
+          <th>Loan1</th>
+          <th>Loan2</th>
+          <th>Other Ded.</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for elem in elements %}
+        <tr>
+          <td>{{ elem.element_id }}</td>
+          <td>{{ elem.transport_allowance }}</td>
+          <td>{{ elem.utility_allowance }}</td>
+          <td>{{ elem.extra_duty_allowance }}</td>
+          <td>{{ elem.other_allowance }}</td>
+          <td>{{ elem.overtime }}</td>
+          <td>{{ elem.social_security_deduction }}</td>
+          <td>{{ elem.tax_deduction }}</td>
+          <td>{{ elem.loan1_deduction }}</td>
+          <td>{{ elem.loan2_deduction }}</td>
+          <td>{{ elem.other_deductions }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

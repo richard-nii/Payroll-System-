@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Jobs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/job.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Manage Jobs</h1>
+
+    <form action="{{ url_for('payroll.manage_jobs') }}" method="POST" class="job-form">
+      <input type="text" name="job_name" placeholder="Job Name" required>
+      <button type="submit">Add Job</button>
+    </form>
+
+    <ul class="job-list">
+      {% for job in jobs %}
+        <li>
+          {{ job.job_name }}
+          <form action="{{ url_for('payroll.delete_job', id=job.job_id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

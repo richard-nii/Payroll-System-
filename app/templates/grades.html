@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Grades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/grade.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Grades</h1>
+
+        <form action="{{ url_for('payroll.manage_grades') }}" method="POST" class="grade-form">
+            <input type="text" name="grade_name" placeholder="Grade Name" required>
+            <input type="number" name="salary" placeholder="Salary" required step="0.01">
+            <button type="submit">Add Grade</button>
+        </form>
+
+        <ul class="grade-list">
+            {% for grade in grades %}
+                <li>
+                    {{ grade.grade_name }} – GH₵ {{ grade.salary }}
+                    <form action="{{ url_for('payroll.delete_grade', id=grade.grade_id) }}" method="POST" style="display:inline;">
+                         <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

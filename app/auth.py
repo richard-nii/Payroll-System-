@@ -44,7 +44,7 @@ def register():
         username = request.form.get('username')
 
         # Check if employee exists
-        employee = Employee.query.filter_by(id=employee_id).first()
+        employee = Employee.query.filter_by(employee_id=employee_id).first()
         if not employee:
             flash("Invalid employee ID. Please contact admin.", "danger")
             return redirect(url_for('auth.register'))
@@ -56,7 +56,7 @@ def register():
             return redirect(url_for('auth.login'))
 
         # Create new user
-        new_user = User(username=username, employee_id=employee_id)
+        new_user = User(username=username, employee_id=employee_id, role='employee') # setting the default role to user
         db.session.add(new_user)
         db.session.commit()
         flash("Account created! You can now log in.", "success")

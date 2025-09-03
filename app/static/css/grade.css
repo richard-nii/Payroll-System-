@@ -1,0 +1,89 @@
+/* grade.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff; /* light blue */
+    color: #003366;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 1px solid #cce0ff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 64, 128, 0.05);
+}
+
+h1 {
+    text-align: center;
+    color: #00509e;
+    margin-bottom: 30px;
+}
+
+.grade-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.grade-form input[type="text"],
+.grade-form input[type="number"] {
+    padding: 10px;
+    border: 1px solid #b3d1ff;
+    border-radius: 8px;
+    width: 80%;
+    outline: none;
+}
+
+.grade-form button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.grade-form button:hover {
+    background-color: #005fa3;
+}
+
+.grade-list {
+    list-style: none;
+    padding: 0;
+}
+
+.grade-list li {
+    background-color: #e6f0ff;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #cce0ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}
+
